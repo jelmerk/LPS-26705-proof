@@ -27,10 +27,6 @@ public class Main {
         HostConfiguration hostConfiguration = new HostConfiguration();
         hostConfiguration.setHost(LIFERAY_HOST, LIFERAY_PORT);
 
-        String screenName = SCREEN_NAME;
-        String emailAddress = EMAIL_ADDRESS;
-        String password = PASSWORD;
-
         long companyId = getCompanyIdByVirtualHost(client, hostConfiguration, hostConfiguration.getHost());
 
         // you cannot fetch a role by name to get to the id so lets just assign any possible role, id's don't seem to
@@ -42,7 +38,7 @@ public class Main {
             roles.add(i);
         }
 
-        addUser(client, hostConfiguration, companyId, emailAddress, screenName, password, roles);
+        addUser(client, hostConfiguration, companyId, EMAIL_ADDRESS, SCREEN_NAME, PASSWORD, roles);
     }
 
     private static long getCompanyIdByVirtualHost(HttpClient client, HostConfiguration hostConfiguration, String host)
