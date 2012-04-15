@@ -17,21 +17,25 @@ public class Main {
     private static final String LIFERAY_HOST = "localhost";
     private static final int LIFERAY_PORT = 8080;
 
+    private static final String SCREEN_NAME = "bobby";
+    private static final String EMAIL_ADDRESS = "bobby@tables.nl";
+    private static final String PASSWORD = "s3cr3t";
+
     public static void main(String[] args) throws Exception {
         HttpClient client = new HttpClient();
 
         HostConfiguration hostConfiguration = new HostConfiguration();
         hostConfiguration.setHost(LIFERAY_HOST, LIFERAY_PORT);
 
-        String screenName = "bobby";
-        String emailAddress = "bobby@tables.nl";
-        String password = "s3cr3t";
+        String screenName = SCREEN_NAME;
+        String emailAddress = EMAIL_ADDRESS;
+        String password = PASSWORD;
 
         long companyId = getCompanyIdByVirtualHost(client, hostConfiguration, hostConfiguration.getHost());
 
         // you cannot fetch a role by name to get to the id so lets just assign any possible role, id's don't seem to
-        // go past 11000 on a clean install so stop there it should also include the admin role, you may not to increase
-        // this number if the admin created his own admin role afterwards
+        // go past 11000 on a clean install so stop there it should also include the admin role, you may have to
+        // increase this number if the admin created his own admin role afterwards
 
         Set<Long> roles = new HashSet<Long>();
         for (long i = 0; i < 11000; i++) {
